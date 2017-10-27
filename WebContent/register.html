@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>briup电子商务-注册页</title>
+<link rel="stylesheet" href="css/common.css"/>
+<link rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="js/register.js"></script>
+</head>
+<body>
+	<div class="container2">
+    	<div class="header2">
+        	<div>
+            	<a href="index.jsp"><img class="logo" src="images/logon_register.png"></a>
+            </div>
+            <div>
+            	<ul class="tabs">
+                	<li class="phone current"><a href="#">用手机登陆</a></li>
+                </ul>
+            </div>
+            <div class="tlg">
+            	已有账号 <a href="login.html">登陆</a>
+            </div>
+        </div>
+        <div class="content2">
+           <form action="regist.do" method="post">
+			<ul class="reg_box">
+            	<li>
+                	<span><b>*</b>用户名：</span>
+                    <input id="userinput" type="text" onblur="usercheck()" name="name" autofocus required/>
+                    <span id="userspan" style="color: #a3fd00;font-size: 26px;margin-left: -50px;display: none">√</span>
+                    <span id="userspan1" style="color: red;font-size: 14px;display: none">用户名不符合要求</span>
+                </li>
+               <li>
+                	<span><b>*</b>密码：</span>
+                    <input id="pwinput" type="password"  onblur="pwcheck()" name="password" required/>
+                    <span id="pwspan" style="color: #a3fd00;font-size: 26px;margin-left: -50px;display: none">√</span>
+                    <span id="pwspan1" style="color: red;font-size: 14px;display: none">密码长度6-18</span>
+                </li>
+                <li>
+                	<span><b>*</b>邮编：</span>
+                    <input id="zipinput" onblur="zipcheck()" type="text" name="zip" required/>
+                    <span id="zipspan" style="color: #a3fd00;font-size: 26px;margin-left: -50px;display: none">√</span>
+                    <span id="zipspan1" style="color: red;font-size: 14px;display: none">邮编格式6个数字</span>
+                </li>
+                <li>
+                	<span><b>*</b>地址：</span>
+                    <input id="addreinput" type="text" onblur="addrecheck()" name="address" required/>
+                    <span id="addrespan" style="color: #a3fd00;font-size: 26px;margin-left: -50px;display: none">√</span>
+                    <span id="addrespan1" style="color: red;font-size: 14px;display: none">地址格式不正确</span>
+                </li>
+                <li>
+                	<span><b>*</b>电话：</span>
+                    <input id="phoneinput" onblur="phonecheck()" type="text" name="telephone" required/>
+                     <span id="phonespan" style="color: #a3fd00;font-size: 26px;margin-left: -50px;display: none">√</span>
+                    <span id="phonespan1" style="color: red;font-size: 14px;display: none">电话为11个数字</span>
+                </li>
+                <li>
+                	<span><b>*</b>电子邮箱：</span>
+                    <input id="emailinput" onblur="emailcheck()" type="text" name="email" required/>
+                     <span id="emailspan" style="color: #a3fd00;font-size: 26px;margin-left: -50px;display: none">√</span>
+                    <span id="emailspan1" style="color: red;font-size: 14px;display: none">电话格式不正确</span>
+                </li>
+            </ul>
+			<p>
+            	<input type="checkbox" checked required/>
+           				     我已阅读并同意
+                <a href="">用户注册协议</a>
+            </p>
+            <input class="btn_submit" type="submit" value="立即注册"/>
+          </form>
+        </div>
+   	</div>
+</body>
+</html>

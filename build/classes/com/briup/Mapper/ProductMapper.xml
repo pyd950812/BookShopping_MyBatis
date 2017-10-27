@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.Mapper.ProductMapper">
+	<resultMap type="Product" id="ProductResult">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="service_fg" column="service_fg" />
+		<result property="service_myf" column="service_myf" />
+		<result property="service_zt" column="service_zt" />
+		<result property="service_th" column="service_th" />
+		<result property="stock" column="stock" />
+		<result property="description" column="description" />
+		<result property="writer" column="writer" />
+		<result property="pages" column="pages" />
+		<result property="ISBN" column="ISBN" />
+		<result property="publish_date" column="publish_date" />
+		<result property="feature_images" column="feature_images" />
+		<result property="images" column="images" />
+		<result property="bill" column="bill" />
+		<result property="start_date" column="start_date" />
+		<result property="sale_num" column="sale_num" />
+		<result property="flag" column="flag" />
+		<result property="explain" column="explain" />
+		<result property="publish_id" column="publish_id" />
+		<result property="cat_detail_id" column="cat_detail_id" />
+	</resultMap>
+	
+	
+	<resultMap type="Report" id="ReportResult">
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+	</resultMap>
+	
+	<resultMap type="Publish" id="PublishResult">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+	</resultMap>
+	
+	
+	<!-- 找到所有的product -->
+	<select id="findAllProduct"  resultMap="ProductResult">
+		select id,name,price,service_fg,service_myf,service_zt,service_th,stock,description,
+		writer,pages,ISBN,publish_date,feature_images,images,bill,start_date,sale_num,
+		flag,explain,publish_id,cat_detail_id from d_product
+	</select>
+	
+	<select id="findAllPublish"  resultMap="PublishResult">
+		select id,name from d_publish
+	</select>
+	
+	<select id="findCateDeIdByName" parameterType="String" resultType="int">
+		select id from d_category_detail where name=#{name}
+	</select>
+	
+	<select id="findProductByCateId" parameterType="int" resultMap="ProductResult">
+		select id,name,price,service_fg,service_myf,service_zt,service_th,stock,description,
+		writer,pages,ISBN,publish_date,feature_images,images,bill,start_date,sale_num,
+		flag,explain,publish_id,cat_detail_id from d_product where cat_detail_id=#{category_id}
+	</select>
+	
+	<select id="findProductById" parameterType="int" resultMap="ProductResult">
+		select id,name,price,service_fg,service_myf,service_zt,service_th,stock,description,
+		writer,pages,ISBN,publish_date,feature_images,images,bill,start_date,sale_num,
+		flag,explain,publish_id,cat_detail_id from d_product where  id=#{id}
+	</select>
+	
+	<select id="findCatIdByPId" parameterType="int" resultType="int">
+		select cat_detail_id from d_product where id=#{id}
+	</select>
+	
+	<select id="findCatDeNameById" parameterType="int" resultType="String">
+		select name from d_category_detail where id=#{id}
+	</select>
+	
+	<select id="findCategory_detail_IdById" parameterType="int" resultType="int">
+		select CAT_DETAIL_ID from d_product where id=#{id}
+	</select>
+	
+	<select id="findProductByPriceRankId" parameterType="long" resultMap="ProductResult">
+		select d.id,d.name,d.price,d.service_fg,d.service_myf,d.service_zt,d.service_th,d.stock,d.description,
+		d.writer,d.pages,d.ISBN,d.publish_date,d.feature_images,d.images,d.bill,d.start_date,d.sale_num,
+		d.flag,d.explain,d.publish_id,d.cat_detail_id 
+		from d_product d,d_price_rank p
+		where p.id=#{id} and d.price>=p.min_price and p.max_price>=d.price
+	</select>
+	
+	
+	
+	
+	
+</mapper> 

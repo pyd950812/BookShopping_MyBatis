@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.Mapper.PriceRankMapper">
+	<resultMap type="PriceRank" id="PriceRankResult">
+	<!-- 左边的是bean中的属性  右边是表中对应的属性 -->
+		<id property="id" column="id" />
+		<result property="min_price" column="min_price" />
+		<result property="max_price" column="max_price" />
+	</resultMap>
+	
+	<select id="findAllPriceRank" resultMap="PriceRankResult">
+		select id,min_price,max_price from d_price_rank 
+	</select>
+	
+</mapper> 

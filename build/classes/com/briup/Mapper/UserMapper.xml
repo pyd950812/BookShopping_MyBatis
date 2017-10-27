@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.Mapper.UserMapper">
+	<resultMap type="UserBean" id="UserBeanResult">
+		<id property="id" column="id" />
+		<result property="username" column="name" />
+		<result property="password" column="password" />
+		<result property="zip" column="zip" />
+		<result property="address" column="address" />
+		<result property="phone" column="phone" />
+		<result property="email" column="email" />
+	</resultMap>
+	
+	<!--找到所有的用户  -->
+	<select id="findAllUser"  resultMap="UserBeanResult">
+		SELECT id,name,password,zip,address,phone,email FROM D_USER
+	</select>
+	<!-- 根据用户名查找用户 -->
+	<select id="findUserByName" parameterType="String" resultMap="UserBeanResult">
+		SELECT id,name,password,zip,address,phone,email FROM D_USER WHERE NAME=#{_parameter}
+	</select>
+	<!-- 添加用户  -->
+	<insert id="addUser" parameterType="UserBean" >
+		INSERT INTO D_USER
+		VALUES(d_user_seq.nextval,#{username},#{password},#{zip},#{address},#{phone},#{email})
+	</insert>
+	<!-- 更新用户信息 -->
+	<update id="updateUser" parameterType="UserBean">
+	 	UPDATE D_USER SET  ID=#{id},NAME=#{username},PASSWORD=#{password},ZIP=#{zip},ADDRESS=#{address},PHONE=#{phone},EMAIL=#{email}
+	 	WHERE NAME=#{username}
+	</update>
+</mapper> 

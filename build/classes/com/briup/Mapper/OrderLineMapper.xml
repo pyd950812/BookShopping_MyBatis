@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.Mapper.OrderLineMapper">
+	<resultMap type="OrderLine" id="OrderLineResult">
+		<id property="id" column="id" />
+		<result property="amount" column="amount" />
+		<result property="single_price" column="single_price" />
+		<result property="product_id" column="product_id" />
+		<result property="user_id" column="user_id" />
+	</resultMap>
+	
+
+	<!-- 根据用户id找到该用户所有的orderline -->	
+	<select id="findAllOrderLineByUserId" parameterType="int" resultMap="OrderLineResult">
+		select id,amount,single_price,product_id,user_id from d_orderline where user_id=#{user_id}
+	</select>
+	
+	<insert id="addProductToOrderLine" parameterType="OrderLine" >
+		INSERT INTO d_orderline(id,amount,single_price,product_id,user_id)
+		VALUES(d_order_seq.nextval,#{amount},#{single_price},#{product_id},#{user_id})
+	</insert>
+	
+	<delete id="deleteProductByNum" parameterType="int">
+		delete  d_orderline where id=#{order_id}
+	</delete>
+	
+	<delete id="deleteAllProductById" parameterType="int">
+		delete  d_orderline where user_id=#{user_id}
+	</delete>
+	
+	
+</mapper> 
